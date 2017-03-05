@@ -163,14 +163,14 @@ var UIcontroller = (function(){
         },
         
         clearFields:function(){
-            var fields,  var fieldsArray;
-            fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' DOMstrings.inputValue);
-            fieldsArray.prototype.slice.call(fields);
+            var fields, fieldsArray;
+            fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+            fieldsArray = Array.prototype.slice.call(fields);
             
             
-            fieldsArray.forEach( function(){
+            fieldsArray.forEach( function(current, index, array){
                 
-                
+                current.value = "";
                 
                 
                 
@@ -217,6 +217,12 @@ var controller = (function(budgetCrtl, UIctrl){
         
         //add the item to the user interface
         UIctrl.addListItem(newITem, input.type);
+        
+        
+        //ClearFields
+        
+        UIctrl.clearFields();
+        
         //calculate the budget.
         //display the budget
        
