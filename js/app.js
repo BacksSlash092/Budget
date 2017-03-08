@@ -80,7 +80,13 @@ var budgetController = (function(){
         
             testing: function(){
                 console.log(data);
-            }
+            },
+        
+        
+            calculateBudget:function() {
+                
+                
+            };
             
         };
 
@@ -120,7 +126,7 @@ var UIcontroller = (function(){
                 
                 type:document.querySelector(DOMstrings.inputType).value, // will be either inc or exp
                 description :document.querySelector(DOMstrings.inputDescription).value,
-                value : document.querySelector(DOMstrings.inputValue).value    
+                value : parseFloat(document.querySelector(DOMstrings.inputValue).value)    
                 
             };  
         },
@@ -175,6 +181,8 @@ var UIcontroller = (function(){
                 
                 
             });
+            
+            fieldsArray[0].focus();
         },
         
         
@@ -206,25 +214,41 @@ var controller = (function(budgetCrtl, UIctrl){
         });
     };
     
+    var updateBudget = function(){
+        
+         //calculate the budget.
+        
+        // Return the budget 
+        
+        
+        
+        //display the budget
+        
+    }
     var crtlAddItem = function(){
         var input,newITem ;
         // Get Input data
         input = UIctrl.getInput();
       
-        // Add the item to the budget controller.
-        newITem =  budgetCrtl.addItem(input.type, input.description, input.value);
+        
+        if (input.description !=='' && !isNaN(input.value) && input.value >0){
+            
+            // Add the item to the budget controller.
+            newITem =  budgetCrtl.addItem(input.type, input.description, input.value);
     
         
-        //add the item to the user interface
-        UIctrl.addListItem(newITem, input.type);
+            //add the item to the user interface
+            UIctrl.addListItem(newITem, input.type);
         
         
-        //ClearFields
+            //ClearFields
+            UIctrl.clearFields();
         
-        UIctrl.clearFields();
-        
-        //calculate the budget.
-        //display the budget
+            //update 
+            updateBudget();
+            
+        };
+
        
     } ;
     
